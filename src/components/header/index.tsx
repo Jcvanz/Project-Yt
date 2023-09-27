@@ -1,78 +1,245 @@
 import { 
     ButtonContainer, 
+    ButtonIcon, 
     Container, 
-    LogoContainer, 
-    ButtonIcon,
+    Logo, 
+    LogoContainer,
     SearchContainer,
     SearchInputContainer,
     SearchInput,
     SearchButton,
-    HeaderButtons
-} from "./styles";
-import HamburgerIcon from '../../assets/headerAssets/hamburgerMenuIcon.png';
-import YoutubeLogo from '../../assets/headerAssets/youtubeLogo.png';
-import LoupeIcon from '../../assets/headerAssets/loupeIcon.png';
-import MicIcon from '../../assets/headerAssets/microphoneIcon.png';
-import AddVideoIcon from '../../assets/headerAssets/addVideoIcon.png';
-import NotificationIcon from '../../assets/headerAssets/notificationIcon.png';
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
-
-interface IProps {
-    openMenu: boolean,
-    setOpenMenu: (openMenu: boolean) => void
-}
-
-function Header({openMenu, setOpenMenu}: IProps) {
-    const { login, logOut } = useContext(UserContext);
+    HeaderButtons, 
+    LinkLogo,
+    LoginContainer,
+    LoginButton,
+    Span,
+    LoginIcon,
+    DropDownMenu,
+    DropDownMenuContent,
+    LogOutButton,
+    UserInfoContainer,
+    UserName,
+    ClearButton,
+    CloseImg,
+    SearchButtonResponsive,
+    BackButton
+  } from "./styles";
+  import Menu from '../../assets/menu.png'
+  import Logoyt from '../../assets/logoyoutube.png'
+  import Lupa from '../../assets/search.png'
+  import Mic from '../../assets/microfone.png'
+  import Sino from '../../assets/sino.png'
+  import Video from '../../assets/videoicon.png'
+  import logout from '../../assets/logout.png'
+  import LoginIconPng from '../../assets/login-icon.png'
+  import VideoIcon from '../../assets/video.png'
+  import CloseIcon from '../../assets/close.png'
+  import BackButtonIcon from '../../assets/voltar.png'
+  import { useAppContext } from "../../contexts/OpenMenu";
+  import { useNavigate } from "react-router-dom";
+  import { useContext, useRef, useState} from "react";
+  import { UserContext } from "../../contexts/UserContext";
+  import { useSearchContext } from "../../contexts/SearchContext";
+  import { useCategoryContext } from "../../contexts/SearchCategories";
+  
+  
+  
+  const Header: React.FC = () => {
+  
+    const { openMenu, setOpenMenu } = useAppContext();
+  
+    const [clearButton, setClearButton] = useState(false)
+  
+    const [openSearch, setOpenSearch] = useState(false)
+  
+    const inputRef = useRef<HTMLInputElement>(null);
+  
+    const Search = () => {
+      setOpenSearch(true)
+      if(inputRef.current) {
+        inputRef.current.focus()
+      }
+    }
+    
+  
     const navigate = useNavigate();
-
-    return(
-        <div>
-            <Container>
-                <LogoContainer>
-                    <ButtonContainer onClick={() => setOpenMenu(!openMenu)} margin='0 10px 0 5px'>
-                        <ButtonIcon src={HamburgerIcon} alt=""/>
-                    </ButtonContainer>
-                    <img 
-                        style={{ cursor: 'pointer', width: '100px' }}
-                        src={YoutubeLogo}
-                        alt=""
-                    />
-                </LogoContainer>
-                <SearchContainer>
-                    <SearchInputContainer>
-                        <SearchInput placeholder="Pesquisar"/>
-                    </SearchInputContainer>
-                    <SearchButton>
-                        <ButtonIcon alt="" src={LoupeIcon} />
-                    </SearchButton>
-                    <ButtonContainer margin='0 0 0 5px'>
-                        <ButtonIcon alt="" src={MicIcon}/>
-                    </ButtonContainer>
-                </SearchContainer>
-                <HeaderButtons>
-                    <ButtonContainer margin='0 0 0 10px'>
-                        <ButtonIcon alt="" src={AddVideoIcon}/>
-                    </ButtonContainer>
-                    <ButtonContainer margin='0 0 0 10px'>
-                        <ButtonIcon alt="" src={NotificationIcon}/>
-                    </ButtonContainer>
-
-                    {login?
-                        <>
-                            <ButtonContainer margin='0 0 0 10px'>
-                                J
-                            </ButtonContainer>
-                            <span onClick={() => logOut()}>Sair</span> 
-                        </> :
-                        <button onClick={() => navigate('/login')}>Fazer login</button>
-                    }
-                </HeaderButtons>
-            </Container>
-        </div>
+  
+    const handleMenuClick = () => {
+      setOpenMenu(!openMenu);
+    };
+  
+    const { login, logOut, user, openDropDownMenu, setOpenDropDownMenu } = useContext(UserContext)
+  
+    
+  
+    const handleDropDownMenu = () => {
+      setOpenDropDownMenu(!openDropDownMenu)
+    }
+  
+    const {setSearch} = useSearchContext()
+  
+    const [inputValue, setInputValue] = useState('')
+  
+    function handleInput(inputValue: string) {
+      setInputValue(inputValue)
+      if(inputValue === '') {
+        setClearButton(false)
+      } else (
+        setClearButton(true)
+      )
+    }
+  
+  
+    const clearInput = () => {
+      setInputValue('')
+      setClearButton(false)
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }
+  
+    const goOut = () => {
+      logOut()
+      handleDropDownMenu()
+      navigate('/')
+    }
+  
+    const goYourVideos = () => {
+      navigate('/yourvideos')
+      handleDropDownMenu()
+    } 
+  
+    const {setCategoryId} = useCategoryContext()
+  
+  
+    return (
+      <Container>
+  
+        <LogoContainer>
+  
+          <ButtonContainer onClick={handleMenuClick} margin='0 10px 0 0'>
+            <ButtonIcon alt="logo menu" src={Menu}/>
+          </ButtonContainer>
+  
+          <LinkLogo to='/' onClick={() => setCategoryId('0')}>
+            <Logo alt="logo youtube" src={Logoyt} />
+          </LinkLogo>
+  
+        </LogoContainer>
+  
+        <SearchButtonResponsive onClick={Search}>
+          <ButtonIcon alt="ícone lupa" src={Lupa}/>
+        </SearchButtonResponsive>
+  
+        <SearchContainer openSearch={openSearch}>
+  
+          <BackButton openSearch={openSearch} onClick={() => setOpenSearch(false)}>
+            <img alt="Botão voltar" src={BackButtonIcon} style={{width: '20px'}}/>
+          </BackButton>
+  
+          <SearchInputContainer>
+            <SearchInput
+              ref={inputRef}
+              value={inputValue} 
+              placeholder="Pesquisar" 
+              onChange={(e: any) => {
+                handleInput(e.target.value)
+              }}
+              onKeyDown={(e: any) => {
+                if (e.key === "Enter") {
+                  setSearch(inputValue)
+                  navigate('/search')
+                  setOpenSearch(false)
+                }
+              }}
+            />
+            <ClearButton 
+              clearButton={clearButton}
+              onClick={clearInput}
+            >
+  
+              <CloseImg src={CloseIcon}/>
+              
+            </ClearButton>
+            
+          </SearchInputContainer>
+  
+          <SearchButton 
+            onClick={() => {
+              if (inputValue.trim() === '') {
+                alert('Digite alguma palavra chave antes de tentar pesquisar')
+                return;
+              }
+              setSearch(inputValue)
+              navigate('/search')
+            }}
+          >
+            <ButtonIcon alt="ícone lupa" src={Lupa}/>
+          </SearchButton>
+  
+          <ButtonContainer margin='0 0 0 10px' responsive688>
+            <ButtonIcon alt="ícone microfone" src={Mic}/>
+          </ButtonContainer>
+  
+  
+        </SearchContainer>
+  
+        {login?
+          <HeaderButtons>
+            <ButtonContainer onClick={() => navigate('/yourvideos')} >
+              <ButtonIcon alt="ícone vídeo" src={Video} />
+            </ButtonContainer>
+  
+            <ButtonContainer margin='0 0 0 10px' responsive600 >
+              <ButtonIcon alt="ícone notificação" src={Sino}/>
+            </ButtonContainer>
+  
+            <ButtonContainer margin='0 0 0 10px' onClick={handleDropDownMenu} >
+              {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
+            </ButtonContainer>
+            
+            <DropDownMenu openDropDownMenu={openDropDownMenu}>
+  
+              <UserInfoContainer>
+                <ButtonContainer 
+                margin='0 0 0 10px' 
+                onClick={handleDropDownMenu} 
+                style={{backgroundColor: '#f2f2f2'}}
+                >
+                  {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
+                </ButtonContainer>
+                <UserName>{user && user.nome ? user.nome : ''}</UserName>
+              </UserInfoContainer>
+  
+              <DropDownMenuContent onClick={goOut}>
+                <ButtonIcon alt="ícone logout" src={logout} />
+                <LogOutButton>
+                  Sair
+                </LogOutButton>
+              </DropDownMenuContent>
+  
+              <DropDownMenuContent onClick={goYourVideos}>
+                <ButtonIcon alt="ícone logout" src={VideoIcon} />
+                <LogOutButton>
+                  Seus vídeos
+                </LogOutButton>
+              </DropDownMenuContent>
+  
+            </DropDownMenu>
+  
+          </HeaderButtons>
+          :
+          <LoginContainer onClick={() => navigate('/login')}>
+            <LoginButton>
+              <LoginIcon alt="Login Icon" src={LoginIconPng} />
+              <Span>Fazer login</Span>
+            </LoginButton>
+          </LoginContainer>
+        }
+  
+  
+      </Container>
     )
-}
-
-export default Header;
+  }
+  
+  export default Header;
