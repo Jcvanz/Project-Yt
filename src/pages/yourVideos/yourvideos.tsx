@@ -1,4 +1,18 @@
-import { AddVideoButton, ClearButton, CloseButton, Container, Modal, ModalContent, ModalTitle, ThumbnailURL, UserContainer, UserName, VideoDescription, VideoTitle, YourVideosContainer } from "./your-videos-style";
+import {
+  AddVideoButton, 
+  ClearButton, 
+  CloseButton, 
+  Container, 
+  Modal,
+  ModalContent, 
+  ModalTitle, 
+  ThumbnailURL, 
+  UserContainer, 
+  UserName, 
+  VideoDescription, 
+  VideoTitle, 
+  YourVideosContainer 
+} from "./styles";
 import { useAppContext } from "../../contexts/OpenMenu";
 import Header from "../../components/header/index";
 import Menu from "../../components/menu/index";

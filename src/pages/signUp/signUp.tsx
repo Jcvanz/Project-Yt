@@ -17,7 +17,7 @@ import {
     UserNameInput, 
     UserPasswordInput 
   } from "./styles";
-  import googleLogo from '../../assets/google-logo.png'
+  import googleLogo from '../../assets/others/google-logo.png';
   import { useState, useContext, useRef, useEffect} from "react";
   import { useNavigate } from "react-router-dom";
   import { UserContext } from "../../contexts/UserContext";

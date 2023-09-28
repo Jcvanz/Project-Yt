@@ -16,8 +16,8 @@ import {
 } from "./styles";
 import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import googleLogo from '../../assets/google-logo.png'
 import { useNavigate } from "react-router-dom";
+import googleLogo from '../../assets/others/google-logo.png';
 
 function Login() {
 

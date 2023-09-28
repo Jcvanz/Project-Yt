@@ -1,4 +1,3 @@
-import './App-style'
 import { MainContainer } from "./App-styles";
 import Home from "./pages/home/index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
