@@ -1,21 +1,21 @@
-import { Container, LibraryContainer } from "./styles";
+import { Container, ShortsContainer } from "./styles";
 import { useAppContext } from "../../contexts/OpenMenu";
 import Header from "../../components/header/index";
 import Menu from "../../components/menu/index";
 
-function Library() {
+function Shorts() {
 
   const { openMenu } = useAppContext();
 
   return (
-    <LibraryContainer>
+    <ShortsContainer>
       <Header />
       <Menu />
       <Container openMenu={openMenu}>
-        <h1>Página em construção - Library</h1>
+        <h1>Página em construção - Shorts</h1>
       </Container>
-    </LibraryContainer>
+    </ShortsContainer>
   )
 }
 
-export default Library;
+export default Shorts;

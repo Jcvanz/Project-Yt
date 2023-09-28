@@ -1,6 +1,11 @@
 import { 
     ChannelImage,
-    Container, ImageBanner, TextCard, TextContainer, Title, TitleContent, 
+    Container, 
+    ImageBanner, 
+    TextCard, 
+    TextContainer, 
+    Title, 
+    TitleContent
 } from "./styles";
 
 function VideoComponent({videos}: any) {

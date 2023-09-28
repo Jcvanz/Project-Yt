@@ -1,21 +1,21 @@
-import { Container, LibraryContainer } from "./styles";
+import { Container, SubscribeContainer } from "./styles";
 import { useAppContext } from "../../contexts/OpenMenu";
 import Header from "../../components/header/index";
 import Menu from "../../components/menu/index";
 
-function Library() {
+function Subscribe() {
 
   const { openMenu } = useAppContext();
 
   return (
-    <LibraryContainer>
+    <SubscribeContainer>
       <Header />
       <Menu />
       <Container openMenu={openMenu}>
-        <h1>Página em construção - Library</h1>
+        <h1>Página em construção - Subscribe</h1>
       </Container>
-    </LibraryContainer>
+    </SubscribeContainer>
   )
 }
 
-export default Library;
+export default Subscribe;

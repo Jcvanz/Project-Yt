@@ -24,17 +24,17 @@ import {
     SearchButtonResponsive,
     BackButton
   } from "./styles";
-  import Menu from '../../assets/menu.png'
-  import Logoyt from '../../assets/logoyoutube.png'
-  import Lupa from '../../assets/search.png'
-  import Mic from '../../assets/microfone.png'
-  import Sino from '../../assets/sino.png'
-  import Video from '../../assets/videoicon.png'
-  import logout from '../../assets/logout.png'
-  import LoginIconPng from '../../assets/login-icon.png'
-  import VideoIcon from '../../assets/video.png'
-  import CloseIcon from '../../assets/close.png'
-  import BackButtonIcon from '../../assets/voltar.png'
+  import Menu from '../../assets/headerAssets/menu.png'
+  import Logoyt from '../../assets/headerAssets/youtubeLogo.png'
+  import Lupa from '../../assets/headerAssets/search.png'
+  import Mic from '../../assets/headerAssets/microphoneIcon.png'
+  import Sino from '../../assets/headerAssets/sino.png'
+  import Video from '../../assets/headerAssets/videoicon.png'
+  import logout from '../../assets/headerAssets/logout.png'
+  import LoginIconPng from '../../assets/headerAssets/login-icon.png'
+  import VideoIcon from '../../assets/headerAssets/videoicon.png'
+  import CloseIcon from '../../assets/headerAssets/close.png'
+  import BackButtonIcon from '../../assets/headerAssets/voltarIcon.png'
   import { useAppContext } from "../../contexts/OpenMenu";
   import { useNavigate } from "react-router-dom";
   import { useContext, useRef, useState} from "react";
