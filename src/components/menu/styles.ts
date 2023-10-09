@@ -6,7 +6,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  width: ${({openMenu}) => openMenu? '260px' : '100px'};
+  width: ${({openMenu}) => openMenu? '260px' : '95px'};
   height: calc(100vh - 55px);
   box-sizing: border-box;
   padding: 10px;
@@ -49,8 +49,8 @@ export const MenuTitles = styled.div`
   margin-bottom: 10px;
   
   span{
-    font-weight: 400;
-    font-size: 1.1rem;
+    font-weight: 500;
+    font-size: 1.2rem;
   }
 `;
 
@@ -73,7 +73,7 @@ export const MenuItem = styled.div<ContainerProps>`
 `;
 
 export const ButtonIcon = styled.img`
-  width: 22px;
+  width: 18px;
 `;
 
 export const MenuItemDescription = styled.span<ContainerProps>`

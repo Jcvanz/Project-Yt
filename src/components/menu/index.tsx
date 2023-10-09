@@ -11,13 +11,12 @@ const Menu: React.FC = () => {
 
   const { openMenu } = useAppContext();
 
-  
   const menuItems = [
     { component: HomeMenu },
     { component: LibraryMenu },
-    { component: ExplorerMenu },
+    { component: ConfigMenu },
     { component: MostMenu },
-    { component: ConfigMenu }
+    { component: ExplorerMenu }
   ];
   
   const shouldRenderAllItems = openMenu;

@@ -41,6 +41,7 @@ export const ButtonContainer = styled.button<{ margin?: string, responsive688?: 
   align-items: center;
   cursor: pointer;
   transition: .4s;
+  margin-left: 5px;
   border: none;
 
   &:hover{
@@ -68,7 +69,7 @@ export const ButtonContainer = styled.button<{ margin?: string, responsive688?: 
 `;
 
 export const ButtonIcon = styled.img`
-  width: 20px;
+  width: 18px;
 `;
 
 export const Logo = styled.img`
