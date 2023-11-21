@@ -6,10 +6,10 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  width: ${({openMenu}) => openMenu? '260px' : '95px'};
+  width: ${({openMenu}) => openMenu? '260px' : '80px'};
   height: calc(100vh - 55px);
   box-sizing: border-box;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   align-items: center;
   flex-direction: column;

@@ -22,7 +22,7 @@ export const Container = styled.div`
 
 export const Divider = styled.hr`
   border: none;
-  border-top: 4px solid #ccc;
+  border-top: 2px solid #ccc;
   margin: 2rem 0 0 0;
   width: 100%;
   border-radius: 25px;
